@@ -598,24 +598,24 @@ a.icon-btn:hover, button.icon-btn:hover{ background: var(--black); color: var(--
 .process-card h3{ margin-top: 14px; }
 .process-card p{ margin-top:10px; font-size:.92rem; color: var(--ink-55); }
 
-.pricing-grid{
+.quote-grid{
   display:grid;
   grid-template-columns: repeat(4,1fr);
   gap: 18px;
 }
-.price-card{
+.quote-card{
   border: 1px solid var(--card-line);
   border-radius: var(--radius-lg);
   padding: 26px 22px;
   background: rgba(255,255,255,.35);
 }
-.price-card .cat{
+.quote-card .cat{
   font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color: var(--ink-55);
 }
-.price-card .from{ font-size:.78rem; color: var(--ink-55); margin-top:14px; }
-.price-card .price{ font-size:1.5rem; font-weight:600; margin-top:2px; }
-.price-card .desc{ font-size:.85rem; color: var(--ink-55); margin-top:10px; }
-.price-card .text-link{ margin-top:18px; font-size:.85rem; }
+.quote-card .from{ font-size:.78rem; color: var(--ink-55); margin-top:14px; }
+.quote-card .price{ font-size:1.5rem; font-weight:600; margin-top:2px; }
+.quote-card .desc{ font-size:.85rem; color: var(--ink-55); margin-top:10px; }
+.quote-card .text-link{ margin-top:18px; font-size:.85rem; }
 
 /* =========================================================
    Página: Projetos
@@ -789,7 +789,7 @@ a.blog-card:hover img{ transform: scale(1.05); }
   .dark-panel{ grid-template-columns:1fr; }
   .projects-grid, .projects-grid.cols-3{ grid-template-columns: repeat(2,1fr); }
   .process-grid{ grid-template-columns: 1fr; }
-  .pricing-grid{ grid-template-columns: repeat(2,1fr); }
+  .quote-grid{ grid-template-columns: repeat(2,1fr); }
   .blog-featured{ grid-template-columns:1fr; }
   .blog-featured figure{ min-height: 260px; }
   .blog-grid{ grid-template-columns: repeat(2,1fr); }
@@ -826,7 +826,7 @@ a.blog-card:hover img{ transform: scale(1.05); }
   .about-media{ grid-template-columns:1fr; }
   .about-media figure{ aspect-ratio:1/1; }
   .projects-grid, .projects-grid.cols-3{ grid-template-columns: 1fr; }
-  .pricing-grid{ grid-template-columns: 1fr; }
+  .quote-grid{ grid-template-columns: 1fr; }
   .blog-grid{ grid-template-columns: 1fr; }
   .article-header h1{ font-size:clamp(2.1rem,10vw,3rem); }
   .service-chips{ grid-template-columns:1fr; }
