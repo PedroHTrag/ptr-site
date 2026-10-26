@@ -612,8 +612,8 @@ a.icon-btn:hover, button.icon-btn:hover{ background: var(--black); color: var(--
 .quote-card .cat{
   font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color: var(--ink-55);
 }
-.quote-card .from{ font-size:.78rem; color: var(--ink-55); margin-top:14px; }
-.quote-card .price{ font-size:1.5rem; font-weight:600; margin-top:2px; }
+.quote-card .quote-label{ font-size:.78rem; color: var(--ink-55); margin-top:14px; }
+
 .quote-card .desc{ font-size:.85rem; color: var(--ink-55); margin-top:10px; }
 .quote-card .text-link{ margin-top:18px; font-size:.85rem; }
 
