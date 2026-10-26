@@ -1,0 +1,19 @@
+---
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://pedrotragante.online/</loc></url>
+  <url><loc>https://pedrotragante.online/servicos.html</loc></url>
+  <url><loc>https://pedrotragante.online/projetos.html</loc></url>
+  <url><loc>https://pedrotragante.online/blog.html</loc></url>
+  <url><loc>https://pedrotragante.online/blog/identidade-visual-seo/</loc></url>
+  <url><loc>https://pedrotragante.online/blog/conteudo-util-seo/</loc></url>
+  <url><loc>https://pedrotragante.online/projeto-aurora.html</loc></url>
+  <url><loc>https://pedrotragante.online/projeto-hapuk.html</loc></url>
+  <url><loc>https://pedrotragante.online/projeto-kudissanga.html</loc></url>
+  <url><loc>https://pedrotragante.online/projeto-hs-telecom.html</loc></url>
+  <url><loc>{{ '/portfolio.html' | absolute_url }}</loc></url>
+  {% for case in site.projetos %}
+  <url><loc>{{ case.url | absolute_url }}</loc></url>
+  {% endfor %}
+</urlset>
