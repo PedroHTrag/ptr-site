@@ -23,7 +23,7 @@
   const favicon = document.createElement("link");
   favicon.rel = "icon";
   favicon.type = "image/svg+xml";
-  favicon.href = "assets/logo/favicon.svg";
+  favicon.href = "assets/logo/favicon.svg?v=2";
   document.head.append(favicon);
 
   document.title = "Blog · Insights | P.TR — designer gráfico";
