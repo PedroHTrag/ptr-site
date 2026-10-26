@@ -99,13 +99,7 @@
       }
       const whatsappNumber = form.getAttribute("data-whatsapp-number");
       if (whatsappNumber) {
-        const sobrenome = (data.get("sobrenome") || "").toString().trim();
-        const mensagem = (data.get("mensagem") || "").toString().trim();
-        const texto = [
-          `Olá! Meu nome é ${[nome, sobrenome].filter(Boolean).join(" ")}.`,
-          `Meu e-mail é ${email}.`,
-          mensagem
-        ].filter(Boolean).join("\n\n");
+        const texto = "Olá, como podemos te ajudar?";
         window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(texto)}`;
         return;
       }
