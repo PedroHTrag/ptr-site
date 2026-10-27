@@ -546,7 +546,7 @@ a.icon-btn:hover, button.icon-btn:hover{ background: var(--black); color: var(--
   gap: 40px;
   color: var(--white);
 }
-.footer-left .footer-logo img{ height: 30px; }
+.footer-left, .footer-form{ min-width:0; } .footer-left .footer-logo img{ height: 30px; }
 .footer-left p{ color: rgba(255,255,255,.8); margin-top:18px; max-width: 34ch; }
 .footer-social{ display:flex; gap:22px; margin-top:26px; }
 .footer-social a{ font-size:.88rem; color:#fff; border-bottom:1px solid rgba(255,255,255,.35); padding-bottom:2px; }
@@ -795,7 +795,7 @@ a.blog-card:hover img{ transform: scale(1.05); }
   .blog-grid{ grid-template-columns: repeat(2,1fr); }
   .article-cover{ border-radius:var(--radius-lg); }
   .theme-panel{ grid-template-columns:1fr; }
-  .footer-card{ grid-template-columns:1fr; }
+  .footer-card{ grid-template-columns:minmax(0,1fr); }
 }
 
 @media (max-width: 720px){
@@ -830,7 +830,7 @@ a.blog-card:hover img{ transform: scale(1.05); }
   .blog-grid{ grid-template-columns: 1fr; }
   .article-header h1{ font-size:clamp(2.1rem,10vw,3rem); }
   .service-chips{ grid-template-columns:1fr; }
-  .form-row{ grid-template-columns:1fr; }
+  .form-row{ grid-template-columns:1fr; } .footer-social{ flex-wrap:wrap; gap:12px 22px; } .footer-social a{ min-width:0; overflow-wrap:anywhere; } .footer-form input, .footer-form textarea, .footer-form button{ min-width:0; max-width:100%; }
   .footer-bottom{ flex-direction:column; align-items:flex-start; }
   .newsletter-bar{ flex-direction:column; align-items:flex-start; }
   .newsletter-form{ width:100%; }
