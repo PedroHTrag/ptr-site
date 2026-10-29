@@ -1,0 +1,12 @@
+{
+  "title": "Pedro Tragante | Designer gráfico e estrategista de marca",
+  "description": "Portfólio e currículo de Pedro Tragante, designer gráfico e estrategista de marca.",
+  "language": "pt-BR",
+  "robots": {
+    "index": true
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

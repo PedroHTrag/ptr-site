@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Space+Mono:wght@400;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --color-ink: #111111;
+  --color-sun: #ffb400;
+  --color-paper: #f7f7f5;
+  --color-mute: #6b6b6b;
+
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, monospace;
+  --font-hand: 'Caveat Brush', cursive;
+
+  --shadow-card: 0 18px 40px -22px rgb(17 17 17 / 0.18), 0 2px 8px rgb(17 17 17 / 0.04);
+  --shadow-lift: 0 28px 52px -24px rgb(17 17 17 / 0.28), 0 4px 12px rgb(17 17 17 / 0.05);
+
+  /* Movimento: um único easing e uma duração base para todas as transições */
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --default-transition-duration: 300ms;
+  --default-transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-float: float 16s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate3d(0, -10px, 0) rotate(1.5deg);
+    }
+  }
+}
+
+/* Palavras grandes "apagadas", apenas com contorno claro */
+@utility text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px #d9d9d3;
+}
+
+/* Padrão de pontos; a cor vem de `text-*` */
+@utility dots {
+  background-image: radial-gradient(currentColor 1.5px, transparent 1.8px);
+  background-size: 12px 12px;
+}
+
+@layer base {
+  :root {
+    /* Tokens de animação usados pelo sistema de movimento abaixo */
+    --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --motion-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --motion-base: 500ms;
+    --motion-enter: 800ms;
+    --motion-stagger: 100ms;
+    --motion-y: 30px;
+  }
+
+  /* Versão mais leve no celular */
+  @media (max-width: 767px) {
+    :root {
+      --motion-enter: 650ms;
+      --motion-stagger: 70ms;
+      --motion-y: 18px;
+    }
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scrollbar-color: #cfcfca var(--color-paper);
+    scrollbar-width: thin;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  section[id] {
+    scroll-margin-top: 84px;
+  }
+
+  ::selection {
+    background: var(--color-sun);
+    color: var(--color-ink);
+  }
+
+  @supports not (scrollbar-color: auto) {
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--color-paper);
+    }
+    ::-webkit-scrollbar-thumb {
+      border: 3px solid var(--color-paper);
+      border-radius: 999px;
+      background: #cfcfca;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--color-ink);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  /* Brilho que atravessa o botão principal no hover */
+  .btn-shine::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(115deg, transparent 35%, rgb(255 255 255 / 0.55) 50%, transparent 65%);
+    transform: translateX(-120%);
+  }
+  @media (hover: hover) {
+    .btn-shine:hover::after {
+      transform: translateX(120%);
+      transition: transform 900ms var(--motion-ease);
+    }
+  }
+
+  /* Revelação por máscara: padding + margem negativa evitam cortar acentos e descendentes sem alterar o layout */
+  .mask-word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    padding: 0.1em 0 0.22em;
+    margin: -0.1em 0 -0.22em;
+  }
+  .mask-inner {
+    display: inline-block;
+  }
+
+  /* Varredura suave (skeleton) nos placeholders de imagem quando aparecem */
+  .img-sweep::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(100deg, transparent 20%, rgb(255 255 255 / 0.5) 50%, transparent 80%);
+    transform: translateX(-100%);
+  }
+
+  /* Cursor personalizado (somente desktop com mouse) */
+  .cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 70;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--motion-base) var(--motion-ease);
+    will-change: transform;
+  }
+  .cursor-follower[data-visible] {
+    opacity: 1;
+  }
+  .cursor-ring {
+    position: absolute;
+    top: -14px;
+    left: -14px;
+    width: 28px;
+    height: 28px;
+    border: 1.5px solid rgb(17 17 17 / 0.4);
+    border-radius: 999px;
+    box-shadow: 0 0 0 1px rgb(255 255 255 / 0.35);
+    transition: scale var(--motion-base) var(--motion-ease);
+  }
+  .cursor-ring::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgb(255 180 0 / 0.25);
+    opacity: 0;
+    transition: opacity var(--motion-base) var(--motion-ease);
+  }
+  .cursor-follower[data-active] .cursor-ring {
+    scale: 1.6;
+  }
+  .cursor-follower[data-active] .cursor-ring::after {
+    opacity: 1;
+  }
+  @media (hover: none), (pointer: coarse) {
+    .cursor-follower {
+      display: none;
+    }
+  }
+}
+
+/* ---------- Sistema de movimento (ligado em main.tsx pela classe .motion-ok) ---------- */
+
+.motion-ok .page-enter {
+  animation: page-in 700ms var(--motion-ease) backwards;
+}
+.motion-ok .header-enter {
+  animation: header-in 800ms var(--motion-ease) backwards;
+}
+
+/* Revelação ao rolar: [data-reveal="up|zoom|fade|line|mask"], cascata via --i */
+.motion-ok [data-reveal]:not([data-reveal='mask']):not([data-revealed]) {
+  opacity: 0;
+}
+.motion-ok [data-reveal][data-revealed] {
+  animation: reveal-up var(--motion-enter) var(--motion-ease) backwards;
+  animation-delay: calc(var(--i, 0) * var(--motion-stagger));
+}
+.motion-ok [data-reveal='zoom'][data-revealed] {
+  animation-name: reveal-zoom;
+}
+.motion-ok [data-reveal='fade'][data-revealed] {
+  animation-name: reveal-fade;
+}
+.motion-ok [data-reveal='line'][data-revealed] {
+  transform-origin: top;
+  animation-name: line-draw;
+  animation-duration: 1400ms;
+}
+.motion-ok [data-reveal='mask'][data-revealed] {
+  animation: none;
+}
+
+.motion-ok [data-reveal='mask']:not([data-revealed]) .mask-inner {
+  transform: translate3d(0, 115%, 0);
+}
+.motion-ok [data-reveal='mask'][data-revealed] .mask-inner {
+  animation: mask-up 900ms var(--motion-ease) backwards;
+  animation-delay: calc(var(--i, 0) * var(--motion-stagger));
+}
+.motion-ok [data-reveal='mask']:not([data-revealed]) [data-bar] {
+  transform: scaleY(0);
+}
+.motion-ok [data-reveal='mask']:not([data-revealed]) [data-bar='x'] {
+  transform: scaleX(0);
+}
+.motion-ok [data-reveal='mask'][data-revealed] [data-bar] {
+  transform-origin: top;
+  animation: bar-y 900ms var(--motion-ease) 150ms backwards;
+}
+.motion-ok [data-reveal='mask'][data-revealed] [data-bar='x'] {
+  transform-origin: center;
+  animation-name: bar-x;
+}
+
+/* Ponto amarelo da linha do tempo "salta" ao aparecer */
+.motion-ok [data-revealed] > [data-dot] {
+  animation: pop 700ms var(--motion-spring) backwards;
+  animation-delay: calc(var(--i, 0) * var(--motion-stagger) + 250ms);
+}
+
+.motion-ok .img-sweep[data-revealed]::after {
+  animation: sweep 1.6s var(--motion-ease) 150ms both;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--motion-y), 0);
+  }
+}
+@keyframes reveal-zoom {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+}
+@keyframes reveal-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes mask-up {
+  from {
+    transform: translate3d(0, 115%, 0);
+  }
+}
+@keyframes bar-y {
+  from {
+    transform: scaleY(0);
+  }
+}
+@keyframes bar-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes line-draw {
+  from {
+    transform: scaleY(0);
+  }
+}
+@keyframes pop {
+  from {
+    transform: scale(0);
+  }
+}
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+}
+@keyframes header-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -18px, 0);
+  }
+}
+@keyframes sweep {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
