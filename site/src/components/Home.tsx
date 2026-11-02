@@ -591,7 +591,7 @@ function Contact() {
           <h2 data-reveal="mask" className="relative text-center font-mono text-[36px] font-bold md:text-[48px]">
             <MaskText text="Contato" start={1} />
           </h2>
-          <ul className="relative mx-auto mt-12 grid max-w-[880px] gap-10 md:grid-cols-2 md:gap-6">
+          <ul className="relative mx-auto mt-12 grid max-w-[640px] gap-8 md:grid-cols-2 md:gap-6">
             {items.map((item, i) => (
               <li key={item.label} data-reveal="up" style={stagger(2 + i)} className="group flex flex-col items-center text-center">
                 <span className="flex size-12 items-center justify-center rounded-full bg-sun text-ink transition-transform duration-500 ease-spring group-hover:-translate-y-1">
