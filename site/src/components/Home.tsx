@@ -223,7 +223,6 @@ function About() {
           </p>
           <ul className="mt-4 flex flex-wrap gap-3">
             <SocialCard index={4} href={LINKS.linkedin} icon="linkedin" network="LinkedIn" name={LINKS.linkedinName} tone="bg-ink text-white" />
-            <SocialCard index={5} href={LINKS.instagram} icon="instagram" network="Instagram" name={LINKS.instagramHandle} tone="bg-sun text-ink" />
           </ul>
         </div>
       </div>
@@ -576,7 +575,6 @@ function Contact() {
   const items: { icon: IconName; label: string; value: string; href: string }[] = [
     { icon: 'mail', label: 'E-mail', value: LINKS.email, href: `mailto:${LINKS.email}` },
     { icon: 'linkedin', label: 'LinkedIn', value: LINKS.linkedinHandle, href: LINKS.linkedin },
-    { icon: 'instagram', label: 'Instagram', value: LINKS.instagramHandle, href: LINKS.instagram },
   ]
 
   return (
@@ -593,7 +591,7 @@ function Contact() {
           <h2 data-reveal="mask" className="relative text-center font-mono text-[36px] font-bold md:text-[48px]">
             <MaskText text="Contato" start={1} />
           </h2>
-          <ul className="relative mx-auto mt-12 grid max-w-[880px] gap-10 md:grid-cols-3 md:gap-6">
+          <ul className="relative mx-auto mt-12 grid max-w-[880px] gap-10 md:grid-cols-2 md:gap-6">
             {items.map((item, i) => (
               <li key={item.label} data-reveal="up" style={stagger(2 + i)} className="group flex flex-col items-center text-center">
                 <span className="flex size-12 items-center justify-center rounded-full bg-sun text-ink transition-transform duration-500 ease-spring group-hover:-translate-y-1">

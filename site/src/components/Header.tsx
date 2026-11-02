@@ -61,9 +61,6 @@ export default function Header({ active }: { active: string | null }) {
           <a href={LINKS.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className={`${iconLink} hidden md:flex`}>
             <Icon name="linkedin" className="size-[17px]" />
           </a>
-          <a href={LINKS.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className={`${iconLink} hidden md:flex`}>
-            <Icon name="instagram" className="size-[17px]" />
-          </a>
           <a
             href={LINKS.cv}
             download
@@ -132,9 +129,6 @@ export default function Header({ active }: { active: string | null }) {
           <div className="mt-2 flex items-center gap-1 border-t border-[#EEEEEA] px-1 pt-3">
             <a href={LINKS.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className={iconLink}>
               <Icon name="linkedin" className="size-[17px]" />
-            </a>
-            <a href={LINKS.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className={iconLink}>
-              <Icon name="instagram" className="size-[17px]" />
             </a>
             <a
               href={LINKS.cv}

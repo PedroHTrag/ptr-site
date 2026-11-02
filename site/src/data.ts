@@ -5,9 +5,6 @@ export const LINKS = {
   linkedin: 'https://www.linkedin.com/in/pedro-tragante-06a88b16a',
   linkedinHandle: 'in/pedro-tragante',
   linkedinName: 'Pedro Tragante',
-  // Substitua pelo endereço e pelo nome do perfil no Instagram.
-  instagram: 'https://www.instagram.com/',
-  instagramHandle: '[@perfil_instagram]',
   studio: 'https://ptrestudio.com.br',
   studioLabel: 'ptrestudio.com.br',
   cv: '/curriculo-pedro-tragante.pdf',
